@@ -13,7 +13,7 @@ const Register = () => {
 
     const formData = new FormData(form);
     const { email, password, ...user } = Object.fromEntries(formData.entries());
-    console.log(user);
+    // console.log(user);
 
     // const userProfile = {
     //   email,
@@ -24,7 +24,7 @@ const Register = () => {
 
     createUser(email, password)
       .then((result) => {
-        console.log(result.user);
+        // console.log(result.user);
         const userProfile = {
           email,
           ...user,
@@ -40,7 +40,7 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
           });
       })
       .catch((error) => {

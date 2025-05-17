@@ -6,11 +6,11 @@ import Swal from "sweetalert2";
 
 const hero = () => {
   const initialCoffees = useLoaderData();
-  console.log(initialCoffees);
+  // console.log(initialCoffees);
   const [coffees, setCoffees] = useState(initialCoffees);
 
   const handleDelete = (id) => {
-    console.log("item delete", id);
+    // console.log("item delete", id);
 
     Swal.fire({
       title: "Are you sure?",
@@ -27,7 +27,7 @@ const hero = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount) {
               Swal.fire({
                 title: "Deleted!",

@@ -7,7 +7,7 @@ const AddCoffee = () => {
     const form = e.target;
     const formData = new FormData(form);
     const newCoffee = Object.fromEntries(formData.entries());
-    console.log(newCoffee);
+    // console.log(newCoffee);
 
     fetch("http://localhost:5000/coffees", {
       method: "POST",
@@ -18,7 +18,7 @@ const AddCoffee = () => {
     })
       .then((res) => res.json())
       .then((result) => {
-        console.log(result);
+        // console.log(result);
         if (result.insertedId) {
           Swal.fire({
             position: "top-end",
