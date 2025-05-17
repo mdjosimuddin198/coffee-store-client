@@ -1,0 +1,112 @@
+import React from "react";
+import Swal from "sweetalert2";
+
+const AddCoffee = () => {
+  const handleAddCoffee = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const formData = new FormData(form);
+    const newCoffee = Object.fromEntries(formData.entries());
+    console.log(newCoffee);
+
+    fetch("http://localhost:5000/coffees", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(newCoffee),
+    })
+      .then((res) => res.json())
+      .then((result) => {
+        console.log(result);
+        if (result.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
+  };
+
+  return (
+    <div className="w-11/12 mx-auto ">
+      <h3 className="text-5xl text-center">Add New Coffee</h3>
+      <form
+        onSubmit={handleAddCoffee}
+        className="bg-[#F4F3F0] py-6 px-4 rounded-2xl"
+      >
+        <div className="grid grid-cols-2 gap-5">
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend text-xl">Name</legend>
+            <input
+              type="text"
+              name="name"
+              className="input w-full"
+              placeholder="Enter Coffee Name "
+            />
+          </fieldset>
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend text-xl">Price</legend>
+            <input
+              type="text"
+              name="price"
+              className="input w-full"
+              placeholder="Enter Price"
+            />
+          </fieldset>
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend text-xl">Supplier</legend>
+            <input
+              type="text"
+              name="Supplier"
+              className="input w-full"
+              placeholder="Enter Supplier Name"
+            />
+          </fieldset>
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend text-xl">Taste</legend>
+            <input
+              type="text"
+              name="taste"
+              className="input w-full"
+              placeholder="Taste"
+            />
+          </fieldset>
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend text-xl">Category</legend>
+            <input
+              type="text"
+              name="Category"
+              className="input w-full"
+              placeholder="Enter Category"
+            />
+          </fieldset>
+          <fieldset className="fieldset">
+            <legend className="fieldset-legend text-xl">Details</legend>
+            <input
+              type="text"
+              name="Details"
+              className="input w-full"
+              placeholder="Enter Details"
+            />
+          </fieldset>
+        </div>
+        <fieldset className="fieldset">
+          <legend className="fieldset-legend text-xl">Photo</legend>
+          <input
+            type="text"
+            name="photo"
+            className="input w-full"
+            placeholder="photo"
+          />
+        </fieldset>
+        <input type="submit" className="btn w-full mt-2" value="Add Coffee" />
+      </form>
+    </div>
+  );
+};
+
+export default AddCoffee;
